@@ -22,8 +22,20 @@ const tailLayout = {
 
 const Signup = () => {
 
-    const onFinish = (data) => {
-      console.log('Success:', data);
+    const onFinish = async (signupData) => {
+        try {
+            console.clear();
+            console.log('Success:', signupData);
+            fetch("http://localhost:8000/singup", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify(signupData)
+            })
+        } catch (err) {
+            console.error(err)
+        }
     };
 
 
@@ -35,7 +47,7 @@ const Signup = () => {
             initialValues={{
                 remember: true,
             }}
-        // onFinish={onFinish}
+            onFinish={onFinish}
         >
             <Form.Item
                 label="Username"
@@ -90,14 +102,15 @@ const Signup = () => {
             </Form.Item>
 
             <Form.Item label="Profile Image"
-                name="profile image"
+                name="profileImage"
                 rules={[
                     {
                         required: true,
                         message: 'Please input your profile image!',
                     },
                 ]}
-                >
+            >
+                
                 <Upload>
                     <Button icon={<UploadOutlined />}>Product image 1</Button>
                 </Upload>

@@ -1,6 +1,6 @@
 import React, { } from "react";
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 
 const layout = {
@@ -20,11 +20,23 @@ const tailLayout = {
 
 const Login = () => {
 
-  // const onFinish = (values) => {
-  //   console.log('Success:', values);
-  // };
+  const onFinish = async (loginData) => {
+    try {
+      console.clear();
+      console.log('Success:', loginData);
+      fetch ("http://localhost:8000/login", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(loginData)
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  };
 
-  
+
 
   return (
     <Form
@@ -33,11 +45,11 @@ const Login = () => {
       initialValues={{
         remember: true,
       }}
-      // onFinish={onFinish}
+      onFinish={onFinish}
     >
       <Form.Item
-        label="Product Name"
-        name="productname"
+        label="userName"
+        name="username"
         rules={[
           {
             required: true,
@@ -71,7 +83,7 @@ const Login = () => {
   );
 };
 
-    
+
 
 
 export default Login;

@@ -28,9 +28,22 @@ const Products = () => {
         { label: 'Marseille', value: 'Marseille' },
     ];
 
-    // const onFinish = (values) => {
-    //   console.log('Success:', values);
-    // };
+    const onFinish = async (ProductAdd) => {
+        try {
+            console.clear();
+            console.log('Success:', ProductAdd);
+            fetch("http://localhost:3000/admin/products", {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                }, 
+                body: JSON.stringify(ProductAdd)
+            })
+        } catch (err) {
+            console.error(err)
+        }
+
+    };
 
     const handleChange = () => {
         console.log("handle Change")
@@ -46,7 +59,7 @@ const Products = () => {
             initialValues={{
                 remember: true,
             }}
-        // onFinish={onFinish}
+            onFinish={onFinish}
         >
             <Form.Item
                 label="ProductName"
@@ -61,7 +74,7 @@ const Products = () => {
                 <Input />
             </Form.Item>
 
-                
+
             <Form.Item
                 label="Price"
                 name="price"
@@ -101,7 +114,7 @@ const Products = () => {
                 <Input.TextArea />
             </Form.Item>
 
-            <Form.Item 
+            <Form.Item
                 label="Product"
                 name="product"
                 rules={[

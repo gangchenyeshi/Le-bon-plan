@@ -1,11 +1,12 @@
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
-import Admin from "./components/Admin";
-import Home from "./components/Home";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
-import Profile from "./components/Profile";
+import { BrowserRouter, Route } from "react-router-dom";
+import Admin from "./views/Admin";
+import Home from "./views/Home";
+import Login from "./views/Login";
+import Signup from "./views/Signup"
+import Profile from "./views/Profile";
 import Products from "./views/Products";
-import NavBar from './views/Navbar';
+import ProductsList from "./components/ProductsList";
+import NavBar from './components/Navbar';
 import './App.css';
 
 function App() {
@@ -16,11 +17,13 @@ function App() {
       </div>
       <div>
         <Route path="/" exact component={Home} />
-        <Route path="/admin" component={Admin} />
-        <Route path="/login" component={Login} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/admin/products" component={Products} />
+        <Route path="/admin" exact component={Admin} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/signup" exact component={Signup} />
+        <Route path="/admin/products" exact component={Products} />
+        <Route path="/products/cities/:cityname" exact component={ProductsList} />
+        <Route path="/products/:id" exact component={ProductsList} />
       </div>
 
     </BrowserRouter>

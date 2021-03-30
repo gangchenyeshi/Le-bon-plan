@@ -1,8 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const bcryptjs = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const config = require("./config");
+const userModel = require("./models/user");
 
 const app = express();
 
@@ -26,3 +29,4 @@ app.get("/", (req, res) => {
 app.post("signup", async(req, res) => {
 
 });
+

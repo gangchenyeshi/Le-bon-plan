@@ -21,7 +21,7 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/signup" exact component={Signup} />
-        <Route path="/admin/products" exact component={Products} />
+        <Route path="/admin/products/add" exact component={Products} />
         <Route path="/products/cities/:cityname" exact component={ProductsList} />
         <Route path="/products/:id" exact component={ProductsList} />
       </div>

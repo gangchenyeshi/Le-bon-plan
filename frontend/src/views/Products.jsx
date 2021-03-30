@@ -1,8 +1,8 @@
 import React, { } from "react";
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Select, InputNumber, Upload } from 'antd';
+import { Form, Input, Button, Select, InputNumber, Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-
+import { useHistory } from "react-router-dom";
 
 
 const layout = {
@@ -21,12 +21,39 @@ const tailLayout = {
 };
 
 const Products = () => {
+    let history = useHistory();
 
     const cities = [
         { label: 'Paris', value: 'paris' },
         { label: 'Lyon', value: 'Lyon' },
         { label: 'Marseille', value: 'Marseille' },
     ];
+
+    const props = {
+        name: 'file',
+        action: 'https://localhost:8000/public/profileimage/:id',
+        headers: {
+            authorization: 'authorization-text',
+        },
+        onChange(info) {
+            if (info.file.status !== 'uploading') {
+                console.log(info.file, info.fileList);
+            }
+            if (info.file.status === 'done') {
+                message.success(`${info.file.name} file uploaded successfully`);
+            } else if (info.file.status === 'error') {
+                message.error(`${info.file.name} file upload failed.`);
+            }
+        },
+        progress: {
+            strokeColor: {
+                '0%': '#108ee9',
+                '100%': '#87d068',
+            },
+            strokeWidth: 3,
+            format: percent => `${parseFloat(percent.toFixed(2))}%`,
+        },
+    };
 
     const onFinish = async (ProductAdd) => {
         try {
@@ -36,9 +63,10 @@ const Products = () => {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
-                }, 
+                },
                 body: JSON.stringify(ProductAdd)
-            })
+            });
+            history.push('products/:id')
         } catch (err) {
             console.error(err)
         }
@@ -49,9 +77,11 @@ const Products = () => {
         console.log("handle Change")
     }
 
-    const handleChangePrice = () => {
-        console.log("handle Change Price")
-    }
+
+    function onChangePrice(value) {
+        console.log('onChangePrice', value);
+    };
+
     return (
         <Form
             {...layout}
@@ -87,28 +117,17 @@ const Products = () => {
             >
                 <InputNumber
                     defaultValue={0}
-                    // formatter={value => ` ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    // parser={value => value.replace(/\$\s?|(,*)/g, '')}
-                    onChange={handleChangePrice}
-                /> €
+                    formatter={value => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                    onChange={onChangePrice}
+                />
             </Form.Item>
 
             <Form.Item name="city" label="City" rules={[{ required: true, message: 'Missing city' }]}>
                 <Select options={cities} onChange={handleChange} />
             </Form.Item>
 
-            <Form.Item
-                label="Description"
-                name="description"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your description!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
+
 
             <Form.Item name="description" label="Description">
                 <Input.TextArea />
@@ -123,7 +142,7 @@ const Products = () => {
                         message: 'Please input your product!',
                     },
                 ]}>
-                <Upload>
+                <Upload {...props}>
                     <Button icon={<UploadOutlined />}>Product image 1</Button>
                     <Button icon={<UploadOutlined />}>Product image 2</Button>
                     <Button icon={<UploadOutlined />}>Product image 3</Button>

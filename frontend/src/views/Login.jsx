@@ -1,6 +1,7 @@
 import React, { } from "react";
 import 'antd/dist/antd.css';
 import { Form, Input, Button } from 'antd';
+import { useHistory } from "react-router-dom";
 
 
 const layout = {
@@ -19,6 +20,7 @@ const tailLayout = {
 };
 
 const Login = () => {
+  let history = useHistory();
 
   const onFinish = async (loginData) => {
     try {
@@ -30,7 +32,8 @@ const Login = () => {
           "Content-type": "application/json"
         },
         body: JSON.stringify(loginData)
-      })
+      });
+      history.push('/admin')
     } catch (err) {
       console.error(err)
     }

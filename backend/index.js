@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-
+const expressValidator = require("express-validator")
+const passwordValidator = require("password-validator")
 const config = require("./config");
 const userModel = require("./models/user");
 

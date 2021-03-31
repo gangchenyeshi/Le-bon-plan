@@ -43,10 +43,6 @@ app.get("/", (req, res) => {
     res.send("Bienvenue sur Le Bon Plan !")
 });
 
-app.post("signup", async(req, res) => {
-    
-
-});
 app.post('/signup',
   expressValidator.body("username").isEmail(),
   expressValidator.body("password").custom((value) => {
@@ -73,8 +69,6 @@ app.post('/signup',
         }
     }
 );
-
-
 
 app.post("/login", async (req, res) => {
     const user = await userModel
@@ -104,4 +98,10 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", verifyToken, async (req, res) => {
     res.send(`Welcome ${req.user.username}!`);
+    // res.json()
 });
+
+app.post("/admin/products/add", verifyToken, async (req, res) => {
+    res.json()
+});
+

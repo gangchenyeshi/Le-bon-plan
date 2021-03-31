@@ -50,7 +50,7 @@ app.post("signup", async(req, res) => {
 app.post("/login", async (req, res) => {
     const user = await userModel
         .findOne({
-            username: req.body.username
+            email: req.body.email
         })
         .exec();
 

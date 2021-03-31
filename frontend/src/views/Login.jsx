@@ -22,22 +22,33 @@ const tailLayout = {
 const Login = () => {
   let history = useHistory();
 
+
   const onFinish = async (loginData) => {
     try {
       console.clear();
-      console.log('Success:', loginData);
-      fetch ("http://localhost:8000/login", {
+      console.log("login Success !", loginData);
+      const tokenFetch = await fetch("http://localhost:8000/login", {
         method: "POST",
         headers: {
           "Content-type": "application/json"
         },
-        body: JSON.stringify(loginData)
+        body: JSON.stringify(
+          loginData
+        )
       });
-      history.push('/admin')
+      // console.log('MY TOKEN :', tokenFetch);
+      const tokenObject = await tokenFetch.json();
+      localStorage.setItem('token', tokenObject.token)
+      // console.log('FINAL TOKEN :',tokenObject);
+      if(tokenObject) {
+        return history.push("/");
+      }
     } catch (err) {
       console.error(err)
     }
-  };
+
+    
+  }
 
 
 
@@ -50,13 +61,14 @@ const Login = () => {
       }}
       onFinish={onFinish}
     >
+      <h1>Login</h1>
       <Form.Item
-        label="userName"
-        name="username"
+        label="Email"
+        name="email"
         rules={[
           {
             required: true,
-            message: 'Please input your productname!',
+            message: 'Please input your email!',
           },
         ]}
       >

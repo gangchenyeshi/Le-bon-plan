@@ -1,10 +1,15 @@
-import React, { } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Cities from '../components/City';
 
 
 const Navbar = () => {
+  const [user, setUser] = useState("");
+
+
 
   return (
+
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -18,31 +23,50 @@ const Navbar = () => {
                 <Link class="nav-link active" aria-current="page" to="/">Home</Link>
               </li>
 
-         
-        
+
+
 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Cities
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><Link class="dropdown-item" to="#">Paris</Link></li>
-                  <li><Link class="dropdown-item" to="/#">Lyon</Link></li>
-                  <li><Link class="dropdown-item" to="/#">Marseille</Link></li>
-                  
+                  <li>
+                    <Link to="/products/cities/:city" class="dropdown-item">
+                      <Cities city={"Paris"}></Cities>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/products/cities/:city" class="dropdown-item">
+                      <Cities city={"Lyon"}></Cities>
+                    </Link>
+                  </li> 
+                  <li>
+                    <Link to="/products/cities/:city" class="dropdown-item">
+                      <Cities city={"Marseille"}></Cities>
+                    </Link>
+                  </li>                  
+
                 </ul>
-        </li>
-               
-      </ul>
-              <form class="d-flex">
-                <Link to="/login"><button class="btn btn-outline-success" type="submit">Login</button></Link>
-                <Link to="/signup"><button class="btn btn-outline-success" type="submit">Signup</button></Link>
-              </form>
-    </div>
-  </div>
-</nav>
+              </li>
+
+            </ul>
+            <form class="d-flex">
+
+              {/* <Link to="/login"><button class="btn btn-outline-success" type="submit">Login</button></Link>
+              <Link to="/signup"><button class="btn btn-outline-success" type="submit">Signup</button></Link>
+              <Link to="/profile"><button class="btn btn-outline-success" type="submit">Profile</button></Link>
+              <Link to="/"><button class="btn btn-outline-success" type="submit">Logout</button></Link> */}
+              {user && <Link to="/profile"><button class="btn btn-outline-success" type="submit">Profile</button></Link>}
+              {user && <Link to="/"><button class="btn btn-outline-success" type="submit">Logout</button></Link>}
+              {!user && <Link to="/login"><button class="btn btn-outline-success" type="submit">Login</button></Link>}
+              {!user && <Link to="/signup"><button class="btn btn-outline-success" type="submit">signup</button></Link>}
+            </form>
+          </div>
         </div>
-    )
+      </nav>
+    </div>
+  )
 
 }
 

@@ -106,3 +106,10 @@ app.post("/admin/products/add", verifyToken, async (req, res) => {
     res.json()
 });
 
+app.get("/products/:product-id", verifyToken, async (req, res) => {
+    res.json()
+});
+
+app.get("/products/cities/:cityname", verifyToken, async (req, res) => {
+    res.json()
+});

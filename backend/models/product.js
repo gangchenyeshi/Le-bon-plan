@@ -6,10 +6,7 @@ const productSchema = new mongoose.Schema({
     descrption: String,
     images: String,
     city: String,
-    user: {
-        type: mongoose.Types.ObjectId,
-        ref: "user"
-    },
+    user: {type: mongoose.Types.ObjectId,ref: "user"},
 });
 
 const productModel = mongoose.model("product", productSchema);

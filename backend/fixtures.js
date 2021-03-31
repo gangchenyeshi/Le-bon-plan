@@ -16,6 +16,7 @@ async function createUser() {
     userModel.create([
         {
             username: "yem",
+            email: "yem@konexio.eu",
             password:  bcryptjs.hashSync("elisabeth"),
             firstName: "Yeshi",
             surname: "Mohamed",

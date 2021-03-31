@@ -44,8 +44,37 @@ app.get("/", (req, res) => {
 });
 
 app.post("signup", async(req, res) => {
+    
 
 });
+app.post('/signup',
+  expressValidator.body("username").isEmail(),
+  expressValidator.body("password").custom((value) => {
+    var schema = new passwordValidator();
+    schema
+      .is().min(8) 
+      .has().uppercase() 
+      .has().lowercase()
+      .has().digits(1) 
+    return schema.validate(value);
+  }),
+    (req, res) => {
+        const errors = validationResult(req);
+        if (errors.isEmpty() === false) {
+            res.json({
+                errors: errors.array() 
+            });
+            return;
+        } else {
+            res.json({
+                success: true,
+                message: 'Welcome to the real World Neo'
+            });
+        }
+    }
+);
+
+
 
 app.post("/login", async (req, res) => {
     const user = await userModel

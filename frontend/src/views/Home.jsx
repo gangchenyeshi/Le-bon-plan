@@ -1,4 +1,6 @@
-import React, { } from "react";
+import React from "react";
+import Cities from '../components/City';
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -7,15 +9,16 @@ const Home = () => {
             <div>
                 <h1>Le Bon Plan</h1>
             </div>
-            <div>
-                <a href="#">Paris</a>
-            </div>
-            <div>
-                <a href="#">Lyon</a>
-            </div>
-            <div>
-                <a href="#">Marseille</a>
-            </div>
+            
+            <Link to="/products/cities/:city">
+                <Cities city={"Paris"}></Cities>
+            </Link>
+            <Link to="/products/cities/:city">
+                <Cities city={"Lyon"}></Cities>
+            </Link>
+            <Link to="/products/cities/:city">
+                <Cities city={"Marseille"}></Cities>
+            </Link>
         </div>
 
     )

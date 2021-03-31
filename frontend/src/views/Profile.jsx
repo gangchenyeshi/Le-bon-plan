@@ -16,7 +16,7 @@ const Profile = () => {
 
                 <div className="card-body">
 
-                    <p className="card-text">Username : </p>
+                    <p className="card-text">Email : </p>
                     <p className="card-text">FirstName : </p>
                     <p className="card-text">SurName : </p>
                 </div>

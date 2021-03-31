@@ -91,6 +91,7 @@ const Products = () => {
             }}
             onFinish={onFinish}
         >
+            <h1>Add Product</h1>
             <Form.Item
                 label="ProductName"
                 name="productname"

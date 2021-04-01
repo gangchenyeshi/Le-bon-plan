@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gangchenyeshi/Le-bon-plan#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.12.2"
+    "mongoose": "^5.12.2",
+    "react-svg-map": "^2.2.0"
   }
 }

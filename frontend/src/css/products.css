@@ -1,0 +1,17 @@
+.productAdd, .card {
+    background-color: rgb(101, 124, 122);
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  border:2px rgb(9, 231, 9) solid;
+  
+}
+.sendButton {
+        border:1px rgb(27, 105, 27) solid;
+        background-color: rgb(34, 41, 37);
+        width: 100%;
+        color: rgb(27, 105, 27);
+        border-radius: 20px;
+        height: 40px;
+        font-size: large;
+      }

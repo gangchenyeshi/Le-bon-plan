@@ -11,7 +11,7 @@ const Navbar = () => {
   return (
 
     <div>
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <Link class="navbar-brand" to="/">LBP</Link>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,14 +53,14 @@ const Navbar = () => {
             </ul>
             <form class="d-flex">
 
-              {/* <Link to="/login"><button class="btn btn-outline-success" type="submit">Login</button></Link>
+              <Link to="/login"><button class="btn btn-outline-success" type="submit">Login</button></Link>
               <Link to="/signup"><button class="btn btn-outline-success" type="submit">Signup</button></Link>
               <Link to="/profile"><button class="btn btn-outline-success" type="submit">Profile</button></Link>
-              <Link to="/"><button class="btn btn-outline-success" type="submit">Logout</button></Link> */}
-              {user && <Link to="/profile"><button class="btn btn-outline-success" type="submit">Profile</button></Link>}
+              <Link to="/"><button class="btn btn-outline-success" type="submit">Logout</button></Link>
+              {/* {user && <Link to="/profile"><button class="btn btn-outline-success" type="submit">Profile</button></Link>}
               {user && <Link to="/"><button class="btn btn-outline-success" type="submit">Logout</button></Link>}
               {!user && <Link to="/login"><button class="btn btn-outline-success" type="submit">Login</button></Link>}
-              {!user && <Link to="/signup"><button class="btn btn-outline-success" type="submit">signup</button></Link>}
+              {!user && <Link to="/signup"><button class="btn btn-outline-success" type="submit">signup</button></Link>} */}
             </form>
           </div>
         </div>

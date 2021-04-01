@@ -1,23 +1,12 @@
 import React, { } from "react";
 import 'antd/dist/antd.css';
-import { Form, Input, Button } from 'antd';
 import { useHistory } from "react-router-dom";
+import { Form, Input, Button } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 
-const layout = {
-  labelCol: {
-    span: 8,
-  },
-  wrapperCol: {
-    span: 8,
-  },
-};
-const tailLayout = {
-  wrapperCol: {
-    offset: 8,
-    span: 8,
-  },
-};
+
+
 
 const Login = () => {
   let history = useHistory();
@@ -37,64 +26,76 @@ const Login = () => {
         )
       });
       // console.log('MY TOKEN :', tokenFetch);
-      const tokenObject = await tokenFetch.json();
-      localStorage.setItem('token', tokenObject.token)
+      // const tokenObject = await tokenFetch.json();
+      // localStorage.setItem('token', tokenObject.token)
       // console.log('FINAL TOKEN :',tokenObject);
-      if(tokenObject) {
-        return history.push("/");
-      }
+      // if (tokenObject) {
+      // return history.push("/");
+      history.push("/");
+      // }
     } catch (err) {
       console.error(err)
     }
 
-    
+
   }
 
 
 
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <h1>Login</h1>
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your email!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+    <div className="container-fluid">
+      <div className="row d-flex justify-content-center">
+        <div className="col-sm-10 col-md-6 col-lg-4 ">
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          <Form
+            name="normal_login"
+            className="login-form"
+            initialValues={{
+              remember: true,
+            }}
+            onFinish={onFinish}
+            className="form"
+          >
+            <h1 className="text">Login</h1>
+            <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Email!',
+                },
+              ]}
+            >
+              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+            </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Please input your Password!',
+                },
+              ]}
+            >
+              <Input
+                prefix={<LockOutlined className="site-form-item-icon" />}
+                type="password"
+                placeholder="Password"
+              />
+            </Form.Item>
+            
 
+            <Form.Item>
+              <Button type="primary" htmlType="submit" className="login-form-button buttonlogin">
+                Log in
+              </Button>
+            </Form.Item>
+          </Form>
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+        </div>
+
+      </div>
+    </div>
   );
 };
 

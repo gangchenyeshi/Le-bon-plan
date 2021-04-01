@@ -1,0 +1,37 @@
+.message {
+    margin-top: 5px;
+    font-size: 13px; 
+  }
+  
+  .success {
+    color: blue;
+  }
+  
+  .error {
+    color: rgb(241, 241, 241);
+  }
+
+
+.form {
+  background-color: rgb(34, 41, 37);
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 20px;
+  border:2px rgb(9, 231, 9) solid;
+  
+}
+.text {
+  color: rgb(44, 105, 44) !important;
+}
+h1 {
+  text-align: center;
+}
+
+.buttonlogin {
+  border:1px rgb(27, 105, 27) solid;
+  background-color: rgb(34, 41, 37);
+  width: 100%;
+  color: rgb(27, 105, 27);
+  border-radius: 20px;
+
+}

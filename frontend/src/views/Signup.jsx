@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import 'antd/dist/antd.css';
-import { Form, Input, Button, Upload } from 'antd';
 import { useHistory } from "react-router-dom";
-import "./signup.css"
-const layout = {
-    labelCol: {
-        span: 8,
-    },
-    wrapperCol: {
-        span: 8,
-    },
-};
-const tailLayout = {
-    wrapperCol: {
-        offset: 8,
-        span: 8,
-    },
-};
+import "../css/signup.css"
+import { Form, Input, Button, Upload } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 const Signup = () => {
     let history = useHistory();
     const [imageUrl, setImage] = useState('');
@@ -25,7 +13,8 @@ const Signup = () => {
     const emailRegex = /\S+@\S+\.\S+/;
     const [isPasswordValid, setIsPasswordValid] = useState(false);
     const [messagePW, setMessagePW] = useState('');
-    const passwordRegex=  /^[a-zA-Z0-9!@#$%^&*]{8,}$/;
+    const passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,}$/;
+
     const onFinish = async (signupData) => {
         try {
             console.clear();
@@ -44,7 +33,7 @@ const Signup = () => {
     };
     const uploadButton = (
         <div>
-            <div style={{ marginTop: 8 }}>Upload</div>
+            <div style={{ marginTop: 8 }}>Upload Your Pofile Photo Here</div>
         </div>
     );
     function getBase64(img, callback) {
@@ -95,89 +84,118 @@ const Signup = () => {
         }
     }
     return (
-        <Form
-            {...layout}
-            name="basic"
-            initialValues={{
-                remember: true,
-            }}
-            onFinish={onFinish}
-        >
-            <h1>Signup</h1>
-            <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your email!',
-                    },
-                ]}
-            >
-                <Input onChange={onChangeEmail} />
-                <p className={`message ${isValid ? 'success' : 'error'}`}>
-                    {message}
-                </p>
-            </Form.Item>
-            <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your password!',
-                    }
-                    // { validator: validatePassword }
-                ]}
-            >
-                <Input.Password onChange={onChangePassword}/>
-                <p className={`message ${isPasswordValid ? 'success' : 'error'}`}>
-                    {messagePW}
-                </p>
-            </Form.Item>
-            <Form.Item
-                label="Firstname"
-                name="firstname"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your firstname!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="Surname"
-                name="surname"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your surname!',
-                    },
-                ]}
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item label="Profile Picture"
-                name="profilePicture">
-                <Upload
-                    name="profilePicture"
-                    listType="picture-card"
-                    beforeUpload={beforeUpload}
-                    showUploadList={false}
-                    action="http://localhost:8000/upload" // change this url after
-                    onChange={handleChangeImage}
-                >
-                    {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
-                </Upload>
-            </Form.Item>
-            <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">
-                    Submit
-        </Button>
-            </Form.Item>
-        </Form>
+        <div className="container-fluid">
+            <div className="row d-flex justify-content-center">
+                <div className="col-sm-10 col-md-6 col-lg-6 ">
+
+                    <Form
+                        name="normal_login"
+                        className="login-form"
+                        initialValues={{
+                            remember: true,
+                        }}
+                        onFinish={onFinish}
+                        className="form"
+                    >
+                        <h1 className="text">SignUp</h1>
+                        <Form.Item
+                            name="email"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your Email!',
+                                },
+                            ]}
+                        >
+                            <Input onChange={onChangeEmail} 
+                                    prefix={<UserOutlined 
+                                    className="site-form-item-icon" />} 
+                                    placeholder="Enter your e-mail"  />
+                            <p className={`message ${isValid ? 'success' : 'error'}`}>
+                                {message}
+                            </p>
+                        </Form.Item>
+                        <Form.Item
+                            name="password"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your Password!',
+                                },
+                            ]}
+                        >
+                            <Input.Password
+                                prefix={<LockOutlined className="site-form-item-icon" />}
+                                type="password"
+                                placeholder="Enter your Password"
+                                onChange={onChangePassword}
+                            />
+                            <p className={`message ${isPasswordValid ? 'success' : 'error'}`}>
+                                {messagePW}
+                            </p>
+                        </Form.Item>
+                        
+                        <Form.Item
+                            name="firstname"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your firstname!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Enter your First Name" />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="surname"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your surname!',
+                                },
+                            ]}
+                        >
+                            <Input placeholder="Enter your Sur Name" />
+                        </Form.Item>
+
+                        <Form.Item
+                            name="profilePicture"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please Upload the Profile Photo !',
+                                },
+                            ]}
+                        >
+                            <Upload
+                                name="profilePicture"
+                                listType="picture-card"
+                                beforeUpload={beforeUpload}
+                                showUploadList={false}
+                                action="http://localhost:8000/upload" // change this url after
+
+                                onChange={handleChangeImage}
+                            >
+                                {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                            </Upload>
+                        </Form.Item>
+
+
+                        <Form.Item>
+                            <Button type="primary" htmlType="submit" className="login-form-button buttonlogin">
+                                Submit
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                   
+                        
+
+                </div>
+
+            </div>
+        </div>
+
     );
 };
 export default Signup;
